@@ -1,6 +1,6 @@
 # amber-vertical-typora-theme
 
-![heading](./README/heading.png)
+![heading](Readme/heading.png)
 
 ## Background
 
