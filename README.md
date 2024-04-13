@@ -8,6 +8,7 @@
 ``` git clone "github.com.cnpmjs.org/MichaelLaw2003/amber-vertical-typora-theme.git" ```
 
 Or download this repository directly from this page: `< > code` -- `Download zip`.
+
 Url: "https://github.com/MichaelLaw2003/amber-vertical-typora-theme/archive/refs/heads/main.zip" .
 
 Unzip the package and copy 
