@@ -7,7 +7,7 @@
 ## Download and Usage
 ``` git clone "github.com.cnpmjs.org/MichaelLaw2003/amber-vertical-typora-theme.git" ```
 
-Or download this repository directly from this page.
+Or download this repository directly from this page: `< > code` -- `Download zip`
 
 Unzip the package and copy 
 1. `amber.css`
