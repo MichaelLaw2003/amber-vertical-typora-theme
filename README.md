@@ -11,7 +11,7 @@ Or download this repository directly from this page: `< > code` -- `Download zip
 
 URL: "https://github.com/MichaelLaw2003/amber-vertical-typora-theme/archive/refs/heads/main.zip" .
 
-### Usage
+## Usage
 Unzip the package and copy 
 1. `amber.css`
 2. `amber` folder
