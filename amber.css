@@ -1,0 +1,1301 @@
+/*  
+ * Copyright (c) 2024 Haitang Studio  
+ * All rights reserved.
+
+ * It was originally released on 2024-04-13.  
+ *  
+ * Licensed under the MIT License.  
+ * You may obtain a copy of the License at:  
+ * https://opensource.org/licenses/MIT  
+ */
+
+:root {
+    /*定义颜色变量 color var def*/
+    /*For modifications, https://www.zhongguose.com/ and https://colors.masantu.com/ are recommended for your reference */
+    --main-color: rgba(255, 163, 18, 1);
+    --shadow-color: rgb(242, 105, 21);
+    --transparent-color: rgba(128, 30, 255, 0.1);
+    --dark-color: rgb(168, 47, 0);
+    --light-color: rgb(251, 235, 180);
+    --em-color:rgb(240,55,82);
+    --bg-color: rgba(255, 253, 240,0.95);
+    --font-color: rgb(42, 26, 16);
+    /*定义字体变量 font face var def*/
+    --base-font: "Playfair","QIJIFALLBACK","QIJIC", serif;
+    --title-font: "Playfair","QIJIFALLBACK","QIJIC", serif;
+    --italic-font: "Playfair Italic", "LXGW WenKai", serif;
+    --monospace: "Cascadia code", "Courier New", "QIJIFALLBACK","QIJIC", monospace;
+    /*定义字号变量 font size var def*/
+    --defalt-font-size:18px; /*基本字体大小*/
+    --blockquote-font-size: 0.9rem;
+    --blockquote-title-font-size: 1.1rem;
+    --table-font-size: 0.8rem;
+    /* Typora界面设置 typora GUI config */
+    --sidebar-font-color: black;
+    --main-panel-font-color: black;
+}
+
+/*字体源 font source*/
+
+/*西文字体 Latin*/
+@font-face {
+    font-family: "Playfair";
+    src: 
+        url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap'),
+        url(./amber/Playfair-VariableFont_opsz\,wdth\,wght.ttf);
+    font-variation-settings:
+      "wdth" 112.5;
+    font-style: normal;
+    font-stretch: normal;
+}
+
+/*西文意大利体 Latin Italic*/
+@font-face {
+    font-family: "Playfair Italic";
+    src: 
+        url('https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap'),
+        url(./amber/Playfair-Italic-VariableFont_opsz\,wdth\,wght.ttf);  
+    font-variation-settings:
+      "wdth" 112.5;
+    font-style:italic;
+    font-stretch: normal;
+}
+
+/*中文正体宋体 Traditional Chinese*/
+@font-face {
+    font-family: "QIJIC";
+    src: url("./amber/qiji-combo-large.ttf");
+    /*font-stretch: extra-expanded;*/
+}
+
+/*中文简体宋体 Simplified Chinese*/
+@font-face {
+    font-family: "QIJIFALLBACK";
+    src: url("./amber/qiji-fallback-large.otf");
+    /*font-stretch: extra-expanded;*/
+}
+
+/*中文楷体 Chinese Italic*/
+@font-face{
+    font-family:"LXGW Wenkai";
+    src:url("./amber/LXGWWenKai-Regular.ttf");
+    font-weight: normal;
+}
+@font-face{
+    font-family:"LXGW WenKai";
+    src:url("./amber/LXGWWenKai-Bold.ttf");
+    font-weight: bold;
+}
+
+/*等宽 Monospace*/
+@font-face {
+    font-family: "Cascadia code";
+    src: url("./amber/Cascadia-Code-Regular-2.ttf");
+}
+
+
+
+
+/* 全局设置 global setting */
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: initial;
+    font-size: var(--defalt-font-size);
+}
+
+body {
+    height:auto !important;
+    font-family: var(--base-font);
+    background-color: var(--bg-color);
+    white-space: nowrap;
+    overflow-x: auto !important; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    overflow-y: hidden; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    
+}
+
+
+content{
+    padding-top: 0;
+    padding-bottom: 0;
+    writing-mode: horizontal-tb; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    -webkit-writing-mode: horizontal-tb; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    text-orientation: mixed; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    margin-left: 4em;
+    margin-right: 4em;
+    scroll-margin-left:auto;
+    scroll-margin-right:auto;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    /*背景图 background iamge*/
+    background-image: url("./amber/bgimg.svg");
+    background-repeat: no-repeat;
+    background-size: 60vh 60vh;
+    background-position: center;
+}
+
+/*打印（导出）设置print config*/
+@media print{
+    @page{
+        size:landscape !important; /*用于中国传统文字排版 For Trad East Asia Typography*/
+        margin:auto;
+    }
+    
+    body{
+        position: relative;
+        writing-mode: vertical-rl; /*用于中国传统文字排版 For Trad East Asia Typography*/
+        -webkit-writing-mode: vertical-rl; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    }
+}
+
+/* “#write”是可编辑区的包裹器 write is a wrapper of writable region */
+
+#write {
+    position: static;
+    margin: auto;
+    /*height: calc(100vh - 2rem);*/
+    min-width: calc(100vw - 45rem);
+    line-height: 1.5rem;
+    transform: none;
+    height: auto;
+    caret-color: var(--main-color);
+    word-spacing: 0.25em;
+    padding-top:3em;
+    padding-bottom: 2em;
+    border-color: var(--dark-color);
+    border-width: 0.25rem;
+    Background: linear-gradient(var(--bg-color)0% 4.75%, var(--dark-color) 4.75% 5%, var(--bg-color) 5% 92.75%, var(--dark-color) 92.75% 93%, var(--bg-color)93% 100%);
+}
+
+/*传统东亚文字排版核心代码如下 Core Codes for Traditional East Asia Typography Style Begin*/
+/*Codes from https://www.maemo.cc/2018/02/17/vertical-mode-of-typecho.html  */
+#write {
+    overflow-x: auto !important;
+    overflow-y: auto;
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl;
+    /*padding: 20px !important;*/
+    display: inline-block;
+    text-align: justify;
+    text-justify: ideographic;
+
+}
+
+#write>p:first-child,
+#write>ul:first-child,
+#write>ol:first-child,
+#write>pre:first-child,
+#write>blockquote:first-child,
+#write>div:first-child,
+#write>table:first-child {
+    margin-top: 0;
+}
+
+/*传统东亚文字排版核心代码如上 Core Codes for Traditional East Asia Typography Style End*/
+
+/*标题 Headings*/
+h1,
+h2,
+h3,
+#write h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--font-color);
+    font-family: var(--title-font);
+    font-weight: 300;
+    line-height: 2rem;
+    margin-left: 1em;
+    margin-right:1em;
+}
+
+h1,
+#write h1 {
+    font-size: 1.75em;
+    margin: 0 0 1.0rem 0;
+    border-left: solid 3px var(--main-color);
+    border-right: solid 3px var(--main-color);
+    width: fit-content;
+}
+
+h2,
+#write h2 {
+    font-size: 1.5em;
+    border-radius: .5em;
+    width: fit-content;
+}
+
+#write h2::before {
+    /*给二级标题添加前缀 Prefix to H2*/
+    content: "";
+    border-radius: .3em;
+    font-size: .8em;
+    padding: 3px 7px;
+    background-color: var(--main-color);
+}
+
+#write h3 {
+    font-size: 1.25em;
+    border-radius: .3rem;
+    width: fit-content;
+}
+
+#write h3::before {
+    /*给三级标题添加前缀 Prefix to H3*/
+    content: "";
+    background-color: var(--shadow-color);
+    font-size: 0.8em;
+    border-radius: .9em;
+    padding: 3px 6px;
+    float: none;
+    /*position: relative;*/
+    top: 0.5rem;
+    left: 0;
+    border-width: 0;
+}
+
+#write h4 {
+    font-size: 1.25em;
+}
+
+#write h5 {
+    font-size: 1em;
+}
+
+#write hr {
+    width: 60%;
+    text-align: center;
+    border-bottom: solid 1.8px var(--main-color);
+    margin: 4.5em auto;
+}
+
+/* 文本的主要元素 main elements of your text */
+
+
+/*一般段落 General paragraph*/
+p.md-end-block.md-p{
+    color: var(--font-color);
+    margin: 0 0 2rem 0;
+    font-weight: 500;
+    line-height: 1.6;
+    font-family: var(--base-font);
+
+}
+
+/*一般段落的子元素，用于行分割线 child element of a general paragraph. A segragation between lines added*/
+/*
+#write p.md-end-block.md-p > span{
+    display:inline;
+    align-content: center;
+    border-left: 0.01rem solid var(--transparent-color);
+}
+*/
+
+/*超链接 Hyperlink*/
+a {
+    color: var(--main-color);
+    font-weight: 500;
+    text-decoration: none;
+    text-decoration-style: none;
+    cursor: pointer;
+    padding: 0 3px 0 3px;
+}
+
+/*强调/意大利体 Emphasize/Italic*/
+em {
+    color:var(--em-color);
+    font-family: var(--italic-font);
+    font-style: normal;
+}
+
+em>span{
+    position: relative;
+    left:-0.05em;
+    margin-bottom:0.1em;
+}
+
+/*粗体 Strong*/
+strong{
+    font-weight: 599;
+    color: var(--em-color);
+    text-emphasis: sesame;
+    text-emphasis-color: var(--em-color);
+    text-emphasis-position: right;
+    -webkit-text-emphasis: dot;
+    -webkit-text-emphasis-position: right;
+    -webkit-text-emphasis-color: var(--em-color);
+}
+
+/*高亮 Highlight*/
+mark {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    color: var(--bg-color);
+    background-color: var(--em-color);
+    border-radius: 0.1rem;
+}
+/* 列表 list */
+
+
+#write ol>li::marker{
+    color:var(--dark-color);
+    font-size:0.9rem;
+}
+
+#write ul>li::marker{
+    color:var(--dark-color);
+    font-size:0.5rem;
+    content:'✤';
+    content:"\2724";
+}
+
+
+iframe {
+    border-radius: 1.2em;
+    box-shadow: 0 0 8px 3px rgba(181, 181, 182, 0.9);
+}
+
+
+/* 勾选框与任务列表 checkbox and task list */
+#write .task-list-item{
+    display: flex;
+}
+
+#write input[type='checkbox']{
+    position:relative;
+}
+
+.md-task-list-item:hover>input:before,
+input[type='checkbox']:hover:before {
+    opacity: 1;
+    transition: 0.3s;
+    background-color: var(--shadow-color);
+}
+
+.task-list-item input::before {
+    content: "";
+    display: inline-block;
+    border-radius: .3em;
+    vertical-align: middle;
+    border: 1.2px solid var(--main-color);
+    background-color: #ffffff;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-left: 1em;
+    margin-top: -0.68rem;
+}
+
+.task-list-item input:checked::before {
+    padding-left: 0.125em;
+    content: '✔';
+    color: white;
+    background-color: var(--main-color);
+    font-size: 0.8rem;
+    line-height: 0.95rem;
+    margin-top: -0.68rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+/*图片 image*/
+
+#write img {
+    border-radius: 0.5em !important;
+}
+
+
+/*引用块 Blockquote*/
+blockquote,
+#write blockquote {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 2.5em;
+    font-size: var(--blockquote-font-size);
+    border-top: 0.25rem solid var(--main-color);
+    border-bottom: 0.25rem solid var(--main-color);
+    border-radius: 0.2rem;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    
+
+}
+
+#write blockquote span {
+    word-break: break-all;
+    line-height: 1.2rem !important;
+}
+
+#write blockquote h1 {
+    font-weight: 350;
+    font-size: var(--blockquote-title-font-size);
+    border-bottom: none;
+    font-family: var(--base-font);
+    line-height: 1.2rem;
+}
+
+#write blockquote h2 {
+    font-weight: 325;
+    font-size: var(--blockquote-title-font-size);
+    font-family: var(--base-font);
+    line-height: 1.2rem;
+}
+
+#write blockquote h3 {
+    font-weight: 300;
+    font-size: var(--blockquote-title-font-size);
+    font-family: var(--base-font);
+    line-height: 1.2rem;
+}
+
+#write blockquote h4 {
+    font-weight: 275;
+    font-size: var(--blockquote-title-font-size);
+    font-family: var(--base-font);
+    line-height: 1.2rem;
+}
+
+#write blockquote h5 {
+    font-weight: 250;
+    font-size: var(--quote-tag-font-size);
+    font-family: var(--base-font);
+    line-height: 1.2rem;
+}
+
+/* 代码块 code block */
+#write pre.md-fences {
+    padding: 1rem 0.5rem 1rem;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--light-color);
+    line-height: 1.5rem;
+    font-size: .9rem;
+    font-weight: 300;
+    border-radius: .7em;
+    font-family: var(--monospace) !important;
+    writing-mode: horizontal-tb; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    -webkit-writing-mode: horizontal-tb; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    
+}
+
+/* 行内代码 inline code */
+code {
+    margin: 0 2px;
+    padding: 4px 6px;
+    color: #666363;
+    white-space: pre-wrap;
+    background: var(--light-color);
+    border-radius: 8px;
+}
+
+#write blockquote code {
+    margin: 0 2px;
+    padding: 4px 6px;
+    color: white;
+    white-space: pre-wrap;
+    background: var(--main-color);
+    border-radius: 8px;
+}
+
+kbd,
+samp,
+tt,
+var {
+    font-family: var(--monospace) !important;
+}
+
+
+/* YAML */
+pre.md-meta-block {
+    font-size: .8rem;
+    min-height: .8rem;
+    white-space: pre-wrap;
+    background: var(--main-color);
+    display: block;
+    overflow-x: hidden;
+    padding: 15px;
+    font-family: var(--monospace);
+    border-radius: 1.2em;
+    color: white;
+    caret-color: white;
+}
+
+
+/* 数学 Math */
+#math-inline-preview-content .MathJax {
+    writing-mode: horizontal-tb;
+    -webkit-writing-mode: horizontal-tb;
+    color: white !important;
+}
+
+.md-inline-math{
+    writing-mode: horizontal-tb;
+    -webkit-writing-mode: horizontal-tb;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;    
+}
+
+
+/* 表格 table */
+
+#write table {
+    width: 95%;
+    border-collapse: collapse;
+    font-family: var(--monospace);
+    margin: 20px;
+    font-size: var(--table-font-size);
+    line-height: 1.6em;
+}
+
+#write table td {
+    font-family: var(--title-font);
+}
+
+#write table > thead > tr > th {
+    border-right: 2px solid #000; /* 表头首行上方粗线 */
+    border-left: 1px solid #000; /* 表头首行下方细线 */
+    border-top: 1px solid var(--transparent-color);
+    border-bottom: 1px solid var(--transparent-color);
+}
+
+
+#write table > tbody > tr > td {
+    border-top: 1px solid var(--transparent-color);
+    border-bottom: 1px solid var(--transparent-color);
+    /*border-right: 2px solid var(--transparent-color);*/
+    border-left: 1px solid var(--transparent-color);
+}
+
+#write table > tbody > tr:last-child {
+    border-left: 2px solid #000; /* 表体末行下方粗线 */
+}
+
+
+
+/*页面下边栏元素 footer*/
+footer {
+    margin-bottom:20px;
+}
+
+
+
+#footer-word-count-label {
+    font-family: var(--title-font) !important;
+    color: white;
+    padding: 1px 8px;
+    border-radius: 1.0em;
+    background-color: var(--main-color);
+
+}
+
+/*目录 TOC Table of Content*/
+.md-toc.md-end-block {
+    padding-right: -0.25rem;
+    padding-left: -0.25rem;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+    overflow: scroll; /*请谨慎修改 Important, please modificate with caution */
+}
+
+.md-toc-tooltip{
+    display: contents;
+    top:0 !important;
+    border-top: none !important;
+    border-right-width: 0.8px;
+    position: relative !important;
+}
+
+p.md-toc-content{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+    padding-right: 0.25rem;
+    padding-left:0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom:0.5rem;
+}
+
+a.md-toc-inner{
+    margin-left:0 !important;
+    margin-right:0 !important;    
+}
+
+.md-toc-h2{
+    margin-top:1rem;
+}
+
+.md-toc-h3{
+    margin-top:2rem;
+}
+
+.md-toc-h4{
+    margin-top:3rem;
+}
+
+.md-toc-h5{
+    display:none;
+}
+
+.md-toc-h6{
+    display:none;
+}
+
+/* 被选中的文字的颜色和背景色 bg color when text is selected */
+div::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+div::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+div::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+blockquote::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+blockquote::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+blockquote::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+p::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+p::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+p::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+label::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+label::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+label::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+span::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+span::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+span::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h1::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h1::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h1::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h2::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h2::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h2::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h3::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h3::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h3::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h4::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h4::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h4::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h5::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h5::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+h5::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+code::selection {
+    background: var(--main-color);
+    color: white;
+}
+
+code::-moz-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+code::-webkit-selection {
+    background: var(--main-color);
+    color: white;
+}
+
+
+/* outside */
+#megamenu-content {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#megamenu-menu-panel {
+    font-family: var(--title-font);
+    padding: 10px;
+}
+
+.megamenu-menu-panel {
+    padding: 10px;
+}
+
+
+.megamenu-menu-header-title-menu {
+    color: var(--sidebar-font-color);
+}
+
+.megamenu-menu-header-title-back {
+    color: var(--sidebar-font-color);
+}
+
+
+/* sidebar */
+.megamenu-menu-header {
+    width: 60%;
+    text-align: center;
+    border-bottom: solid 3px var(--main-color);
+}
+
+#megamenu-menu-sidebar {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--sidebar-font-color);
+    box-shadow: 0 0 8px 4px rgb(100 100 100 / 80%);
+    margin-top: 3%;
+    height: 92%;
+    border-radius: 0 4em 4em 0;
+}
+
+#megamenu-back-btn {
+    border-radius: 1.2em;
+    color: var(--main-color);
+    transition: all linear .3s;
+    padding: 0 0 10px;
+}
+
+#megamenu-back-btn:hover {
+    background-color: var(--main-color);
+    color: white;
+    border: 2px solid white;
+    transition: all linear .3s;
+}
+
+#megamenu-menu-list>li {
+    transition: all linear .3s;
+}
+
+#megamenu-menu-list>li:hover {
+    transition: all linear .3s;
+    border-top-left-radius: 1.2em;
+    border-bottom-left-radius: 1.2em;
+}
+
+#megamenu-menu-list>li:focus {
+    transition: all linear .3s;
+    color: white;
+    background-color: var(--shadow-color);
+    width: fit-content;
+    border-top-right-radius: 1.2em;
+    border-bottom-right-radius: 1.2em;
+}
+
+.dropdown-menu .divider {
+    width: 30%;
+    color: var(--main-color);
+    background-color: var(--main-color);
+}
+
+.megamenu-menu-list li a {
+    transition: all linear .3s;
+    width: fit-content;
+    padding-right: 60px;
+}
+
+.megamenu-menu-list li a:hover {
+    transition: all linear .3s;
+    color: white !important;
+    background-color: var(--main-color) !important;
+    border-bottom-right-radius: 2em;
+    border-top-right-radius: 2em;
+}
+
+.megamenu-menu-list li a.active,
+.megamenu-menu-list:not(.saved) li a:hover {
+    color: white !important;
+    background-color: var(--main-color) !important;
+    border-bottom-right-radius: 2em;
+    border-top-right-radius: 2em;
+}
+
+
+/* open */
+#m-open-local,
+#m-import-local {
+    border-radius: 1.2em;
+}
+
+#m-open-local:hover,
+#m-import-local:hover {
+    border: 1px solid var(--shadow-color);
+}
+
+#recent-file-panel-search-input {
+    border-radius: 1.2em;
+    transition: all linear .3s;
+    font-family: var(--title-font);
+}
+
+#recent-file-panel-action-btn {
+    border-radius: 1.2em;
+}
+
+#recent-file-panel-search-input:hover {
+    transition: all linear .3s;
+    box-shadow: 0 0 10px 3px var(--shadow-color);
+}
+
+#recent-file-panel-search-input:focus {
+    transition: all linear .3s;
+    color: white;
+    border: none;
+    background-color: var(--shadow-color);
+}
+
+/* side bar Ctrl Shift 2 */
+/* .typora-node.pin-outline:not(.megamenu-opened):not(.typora-sourceview-on) #typora-sidebar {
+    display: block;
+    left: 0;
+    transition: left .3s;
+    border-radius: 0em 3em 3em 0em;
+    box-shadow: 0 0 8px 3px rgb(100 100 100 / 80%);
+    margin-top: 20px;
+    margin-bottom: 5%;
+    height: 95%;
+    padding-right: 10px;
+} */
+
+.info-panel-tab-border {
+    color: var(--main-color) !important;
+    background-color: var(--main-color) !important;
+}
+
+.outline-content {
+    padding: 3px 18px 3px 0;
+}
+
+.outline-item {
+    margin-left: -20px;
+    margin-right: -20px;
+    border-left: 20px solid transparent;
+    border-right: 16px solid transparent;
+}
+
+.outline-item:hover {
+    background-color: var(--shadow-color);
+    color: white;
+}
+
+.active-tab-files #info-panel-tab-file .info-panel-tab-title {
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px 5px;
+    border-radius: 1.2em;
+    transition: all linear .3s;
+}
+
+.active-tab-outline #info-panel-tab-outline .info-panel-tab-title {
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px 5px;
+    border-radius: 1.2em;
+    transition: all linear .3s;
+}
+
+.ty-show-search #info-panel-tab-search .info-panel-tab-title {
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px 5px;
+    border-radius: 1.2em;
+    transition: all linear .3s;
+}
+
+
+#file-library-search-input {
+    border-radius: .5em;
+}
+
+#file-library-search-input:focus {
+    border: 2px solid var(--main-color);
+}
+
+.info-panel-tab-border {
+    display: none;
+}
+
+div#file-library-list-children {
+    transition: all linear .3s;
+}
+
+.file-list-item.active {
+    border-top-right-radius: 2.2em;
+    border-bottom-right-radius: 2.2em;
+    width: fit-content;
+    background-color: var(--main-color) !important;
+    color: white;
+    transition: all linear .3s;
+}
+
+.outline-item-active {
+    border-top-right-radius: 2.2em;
+    border-bottom-right-radius: 2.2em;
+    width: fit-content;
+    background-color: var(--main-color) !important;
+    color: white;
+    transition: all linear .3s;
+}
+
+
+/* theme */
+.theme-preview-div.active,
+.theme-preview-div.active:hover {
+    border-color: var(--main-color);
+}
+
+#theme-preview-grid {
+    max-width: 100% !important;
+}
+
+#open-theme-folder-btn {
+    transition: all .3s;
+    border-radius: 2em;
+    border: none;
+    color: white !important;
+    background-color: var(--main-color);
+}
+
+#open-theme-folder-btn:hover {
+    transition: all .3s;
+    color: white !important;
+    background-color: var(--shadow-color);
+}
+
+/* export */
+.long-btn {
+    transition: all .3s;
+    border-radius: 2em;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.long-btn:hover {
+    transition: all .3s;
+    color: white !important;
+    background-color: var(--main-color);
+}
+
+.long-btn-wrap {
+    padding: 10px;
+}
+
+.megamenu-section-export {
+    font-family: var(--title-font) !important;
+}
+
+
+.megamenu-menu-panel h1 {
+    padding-bottom: 10px;
+    width: fit-content !important;
+    border-bottom: var(--main-color) solid 3px;
+}
+
+.megamenu-menu-panel h2::before {
+    content: "H2";
+    border-radius: .3em;
+    font-size: 25px;
+    padding: 3px 7px;
+    margin: 5px 15px 5px 1px;
+    background-color: var(--main-color);
+    color: white;
+}
+
+
+/* modal exit dialog */
+.btn-primary {
+    transition: all .3 linear;
+    border-radius: 1.2em;
+    background-color: var(--main-color);
+}
+
+.btn-default {
+    transition: all .3 linear;
+    border-radius: 1.2em;
+    border: var(--main-color) 3px solid;
+    color: var(--main-color);
+    background-color: white;
+}
+
+.btn-primary:hover,
+.btn-default:hover {
+    transition: all .3 linear;
+    color: white;
+    background-color: var(--shadow-color);
+}
+
+.btn-primary:focus,
+.btn-default:focus {
+    transition: all .3 linear;
+    color: white;
+    background-color: var(--main-color);
+}
+
+.modal-content {
+    border-radius: 1.5em;
+    border: none;
+}
+
+.ImgCaption {
+    padding-top: 0;
+    margin-top: 0;
+    border-bottom: 2px solid var(--shadow-color);
+    width: fit-content;
+}
+
+/* Perference */
+.nav-group-item-item:hover {
+    transition: all .3s;
+    border: 2px solid var(--main-color);
+}
+
+.nav-group-item.active {
+    color: white;
+    font-family: var(--title-font);
+    transition: all .3s;
+    border-radius: 1.5em;
+    padding: 6px 11px 6px 11px;
+}
+
+.nav-group-item {
+    transition: all .3s;
+    border-radius: 1.5em;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.nav-group-item.active,
+.nav-group-item:active {
+    background-color: var(--main-color) !important;
+    color: white !important;
+}
+
+.pane-group {
+    font-family: var(--title-font);
+}
+
+input:not([type=range]):not([type=color]) {
+    outline: none;
+    border: 2px solid var(--main-color);
+    border-radius: .7em;
+    font-size: 16px;
+}
+
+input:not([type=range]):not([type=color]):focus {
+    border-radius: .7em;
+    color: white;
+    background-color: var(--main-color);
+    transition: all .3s linear;
+}
+
+.pane select,
+.pane .btn {
+    border-radius: 0.7em;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.pane .btn:hover {
+    color: white !important;
+    transition: all .3s linear;
+    background-color: var(--main-color);
+}
+
+.label-input-group td:hover {
+    box-shadow: none;
+}
+
+.label-input-group .row:hover {
+    color: black;
+    background-color: white;
+}
+
+#write.enable-diagrams>[mermaid-type=gantt].md-fences:not(.md-focus) {
+    width: inherit !important;
+    margin-left: inherit !important;
+}
+
+/*  
+ * Copyright (c) 2024 Haitang Studio  
+ * All rights reserved.
+
+ * It was originally released on 2024-04-13.  
+ *  
+ * Licensed under the MIT License.  
+ * You may obtain a copy of the License at:  
+ * https://opensource.org/licenses/MIT  
+ */
+
+ 
+/* TODO fix the bug below (heritated from Haru)*/
+#footer-word-count-info table,
+#footer-word-count-info td,
+#footer-word-count-info tr {
+    border: none !important;
+    background: inherit !important;
+    font-size: 13.5px !important;
+    text-align: left !important;
+    padding: 0;
+    -webkit-user-select: initial;
+    user-select: initial;
+    margin: 0 !important;
+    line-height: 1.8;
+}
+
+.ty-tooltip {
+    border-radius: 0.7em !important;
+}
+
+#recent-file-panel-action-btn {
+    border-radius: 0.7em;
+}
+
+.outline-content li,
+.outline-content ul {
+    padding-left: 10px;
+}
+
+
+.file-node-content {
+    transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    color: var(--font-color);
+    padding: 5px;
+}
+
+
+.file-node-content:hover {
+    transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+.file-node-content:focus {
+    transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    cursor: pointer;
+}
+
+#file-library .active {
+    transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    color: var(--light-color);
+    cursor: pointer;
+}
+
+.file-tree-node.active>.file-node-background {
+    transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    background-color: var(--main-color);
+    border-left: var(--small-dark-color);
+    border-color: var(--small-dark-color);
+}
