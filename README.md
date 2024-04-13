@@ -9,7 +9,7 @@
 
 Or download this repository directly from this page: `< > code` -- `Download zip`.
 
-Url: "https://github.com/MichaelLaw2003/amber-vertical-typora-theme/archive/refs/heads/main.zip" .
+URL: "https://github.com/MichaelLaw2003/amber-vertical-typora-theme/archive/refs/heads/main.zip" .
 
 Unzip the package and copy 
 1. `amber.css`
