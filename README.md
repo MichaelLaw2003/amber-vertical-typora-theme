@@ -1,5 +1,46 @@
 # amber-vertical-typora-theme
-## Description
+
+## Background
+
 琥珀是第一款符合传统汉字纵向排版习惯的Typora主题。 Amber is the first vertical Typora theme that conforms to the tradition of ancient Chinese typography.
+
 ## Download
+
 https://github.com/MichaelLaw2003/amber-vertical-typora-theme/releases
+
+## Introduction
+
+*琥珀*是第一款符合汉字传统书写和印刷习惯的Typora主题。
+
+### 风格
+
+*琥珀*基于*Haru*主题设计，希望可以作为日后竖版模板之基础。
+
+*琥珀*之设计以明刻本《[李长吉歌诗](https://old.shuge.org/ebook/li-changji-ge-shi/)》为主要风格参考，并综合参考简牍、手卷、印鉴、笺纸等多种其他资料。
+
+本项目受到日本设计中心应用程序Stone启发，并蒙书格网、「古书之美」应用程序提供参考资料。
+
+### 设计
+
+*琥珀*支持简体汉字、繁體漢字、Latin letters。
+
+中文字体为令東齊伋體。
+
+意大利体(*Italic*)匹配字体为*霞鹜文楷*。
+
+*意大利体*、==强调==、**粗体**等特殊风格参考了*Rubrication*主题。
+
+### 目标场景
+
+- 诗歌、散文、小说写作。
+- 简单的古籍风格化。
+- 其他需要传统排版风格的场合。
+- 作为其他竖排样式的基准。
+
+## 风格案例
+
+![Example1](Readme/Example1.png)
+
+![Example2](Readme/Example2.png)
+
+![Example3](Readme/Example3.png)
