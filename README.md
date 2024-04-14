@@ -7,7 +7,7 @@
 琥珀是第一款符合传统汉字纵向排版习惯的Typora主题。 Amber is the first vertical Typora theme that conforms to the tradition of ancient Chinese typography.
 
 ## Download 
-==This theme is tested in Typora version 1.8.10, Windows 10 system.==
+**This theme is tested in Typora version 1.8.10, on Windows 10 system.**
 
 ``` git clone "github.com.cnpmjs.org/MichaelLaw2003/amber-vertical-typora-theme.git" ```
 
