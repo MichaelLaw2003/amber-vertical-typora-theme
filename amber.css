@@ -170,7 +170,7 @@ content{
     border-color: var(--dark-color);
     border-width: 0.25rem;
     /*Background: linear-gradient(var(--bg-color)0% 4.75%, var(--dark-color) 4.75% 5%, var(--bg-color) 5% 92.75%, var(--dark-color) 92.75% 93%, var(--bg-color)93% 100%);*/
-    Background: linear-gradient(var(--dark-color) 0% 0.5%, var(--bg-color) 0.5% 99.5%, var(--dark-color) 99.5% 100%);
+    Background: linear-gradient(var(--dark-color) 0% 0.25%, var(--bg-color) 0.25% 99.75%, var(--dark-color) 99.75% 100%);
 }
 
 /*传统东亚文字排版核心代码如下 Core Codes for Traditional East Asia Typography Style Begin*/
