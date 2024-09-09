@@ -111,19 +111,19 @@ body {
     font-family: var(--base-font);
     background-color: var(--bg-color);
     white-space: nowrap;
-    overflow-x: auto !important; /*用于中国传统文字排版 For Trad East Asia Typography*/
+    overflow-x: hidden !important; /*用于中国传统文字排版 For Trad East Asia Typography*/
     overflow-y: hidden; /*用于中国传统文字排版 For Trad East Asia Typography*/
     
 }
 
 
 content{
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
     writing-mode: horizontal-tb; /*用于中国传统文字排版 For Trad East Asia Typography*/
     -webkit-writing-mode: horizontal-tb; /*用于中国传统文字排版 For Trad East Asia Typography*/
     text-orientation: mixed; /*用于中国传统文字排版 For Trad East Asia Typography*/
-    overflow-x: auto !important;
+    overflow-x: hidden !important;
     overflow-y: hidden;
     margin-left: 4em;
     margin-right: 4em;
@@ -158,7 +158,7 @@ content{
 #write {
     position: static;
     margin: auto;
-    /*height: calc(100vh - 2rem);*/
+    height: calc(100vh - 2rem);
     min-width: calc(100vw - 45rem);
     line-height: 1.5rem;
     transform: none;
@@ -169,20 +169,22 @@ content{
     padding-bottom: 2em;
     border-color: var(--dark-color);
     border-width: 0.25rem;
-    Background: linear-gradient(var(--bg-color)0% 4.75%, var(--dark-color) 4.75% 5%, var(--bg-color) 5% 92.75%, var(--dark-color) 92.75% 93%, var(--bg-color)93% 100%);
+    /*Background: linear-gradient(var(--bg-color)0% 4.75%, var(--dark-color) 4.75% 5%, var(--bg-color) 5% 92.75%, var(--dark-color) 92.75% 93%, var(--bg-color)93% 100%);*/
+    Background: linear-gradient(var(--dark-color) 0% 0.5%, var(--bg-color) 0.5% 99.5%, var(--dark-color) 99.5% 100%);
 }
 
 /*传统东亚文字排版核心代码如下 Core Codes for Traditional East Asia Typography Style Begin*/
 /*Codes from https://www.maemo.cc/2018/02/17/vertical-mode-of-typecho.html  */
 #write {
     overflow-x: auto !important;
-    overflow-y: auto;
+    overflow-y: hidden;
     writing-mode: vertical-rl;
     -webkit-writing-mode: vertical-rl;
     /*padding: 20px !important;*/
     display: inline-block;
     text-align: justify;
     text-justify: ideographic;
+    scrollbar-width:auto;
 
 }
 
