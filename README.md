@@ -64,3 +64,5 @@ to the Typora Theme folder.
 1. 回鹘蒙古文和满文等可能显示异常
 2. 勾选框可能显示异常
 3. This theme is compatible with Japanese and Korean, but lacks unique fonts and other styles.
+4. 与导出相关的问题是由Pandoc和Typora引起的。请去正确的地方报告这些问题。这事儿我解决不了。Problems related to output are caused by Pandoc and Typora, please report these problems in proper places, but not here.
+5. 正在考虑更换中文默认字体。齐伋体虽然很有风格，但毕竟不符合专业字体设计规范。而且我也编辑不了它。 I'm considering change the default Chinese font. Qiji is elegant, but it does not conform to professional font design standards. And I cannot edit that font.
